@@ -1,0 +1,112 @@
+<section class="form-container">
+  <img *ngIf="!isSuccess" class="background-img" src="../../../assets/background-img.png" />
+  <img *ngIf="isSuccess" class="background-img" src="../../../assets/success.png" />
+  <h1>Register Your Account</h1>
+  <form *ngIf="!isSubmitted; else result" [formGroup]="registerForm" (ngSubmit)="registerUser()" class="register-form">
+    <p>
+      <input formControlName="firstName" placeholder="First Name">
+      <br />
+
+      <label *ngIf="registerForm.get('firstName')?.status === 'INVALID' && registerForm.get('firstName')?.touched && !registerForm.get('firstName')?.value" class="error">
+        First name is required.
+      </label>
+      <br />
+      <label *ngIf="registerForm.get('firstName')?.status === 'INVALID' && registerForm.get('firstName')?.value" class="error">
+        First Name must contain atleast 1 uppercase letter and no numbers.
+      </label>
+    </p>
+
+    <p>
+      <input formControlName="lastName" placeholder="Last Name">
+      <br />
+
+      <label *ngIf="registerForm.get('lastName')?.status === 'INVALID' && registerForm.get('lastName')?.touched && !registerForm.get('lastName')?.value" class="error">
+        Last name is required.
+      </label>
+      <br />
+      <label *ngIf="registerForm.get('lastName')?.status === 'INVALID' && registerForm.get('lastName')?.value" class="error">
+        Last Name must contain atleast 1 uppercase letter and no numbers.
+      </label>
+    </p>
+
+    <p>
+      <input formControlName="email" placeholder="Email" type="email">
+      <br />
+
+      <label *ngIf="registerForm.get('email')?.status === 'INVALID' && registerForm.get('email')?.touched && !registerForm.get('email')?.value" class="error">
+        Email is required.
+      </label>
+      <br />
+      <label *ngIf="registerForm.get('email')?.status === 'INVALID' && registerForm.get('email')?.value" class="error">
+        Please enter a valid email address.
+      </label>
+    </p>
+
+    <p>
+      <input formControlName="userName" placeholder="Username">
+      <br />
+
+      <label *ngIf="registerForm.get('userName')?.status === 'INVALID' && registerForm.get('userName')?.touched && !registerForm.get('userName')?.value" class="error">
+        Username
+        is required.
+      </label>
+      <br />
+      <label *ngIf="registerForm.get('userName')?.status === 'INVALID' && registerForm.get('userName')?.value" class="error">
+        Username must be alphanumeric and be atleast 8 characters.
+      </label>
+    </p>
+
+    <p class="password-wrapper" (mouseover)="showPasswordModal = true" (mouseout)="showPasswordModal = false">
+      <input formControlName="password" placeholder="Password" type="password">
+      <br /><label *ngIf="registerForm.get('password')?.status === 'INVALID' && registerForm.get('password')?.touched && !registerForm.get('password')?.value" class="error">
+        Password
+        is required.
+      </label>
+      <br />
+      <label *ngIf="registerForm.get('password')?.status === 'INVALID' && registerForm.get('password')?.value" class="error">
+        Please enter a valid password.
+      </label>
+
+    </p>
+
+    <p>
+      <input formControlName="confirmPassword" placeholder="Confirm Password" type="password">
+      <br /><label *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.value !== registerForm.get('password')?.value" class="error">
+        Password must match.
+      </label>
+      <br />
+    </p>
+
+    <button class="btn-primary">
+      Register
+    </button>
+  </form>
+</section>
+
+<aside *ngIf="showPasswordModal" class="password-modal">
+  <h3>Password Must:</h3>
+  <ul>
+    <li>contain 10 or more characters</li>
+    <li>contain at least 1 uppercase letter</li>
+    <li>contain at least 1 lowercase letter</li>
+    <li>contain at least 1 of the listed special characters !@#$%^&*=_+?</li>
+    <li>contain at least 1 number</li>
+  </ul>
+
+</aside>
+
+<ng-template #result>
+  <div *ngIf="isSuccess == true"  class="register-card">
+    <h2>Successfully Submitted</h2>
+    <img id="success-img" src="../../../assets/success2.png" />
+  </div>
+
+  <div *ngIf="!isSuccess" class="register-card">
+    <h2 *ngIf="!isSuccess">Sorry, An Error Occured.</h2>
+    <p>Please click the button to try again</p>
+    <button class="btn-primary" (click)="resetForm()">
+      Try Again
+    </button>
+  </div>
+  
+</ng-template>

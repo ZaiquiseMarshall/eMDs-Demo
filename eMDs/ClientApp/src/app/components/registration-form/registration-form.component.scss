@@ -1,0 +1,72 @@
+.form-container {
+  text-align: center;
+
+  h1 {
+    font-weight: 800;
+  }
+
+  .form-header {
+    color: #8bc53e;
+    text-shadow: 1px 0px 3px #5e9f3d;
+    font-weight: bolder;
+    -webkit-writing-mode: vertical-rl;
+    position: absolute;
+  }
+
+  .register-form, .register-card {
+    margin-top: 20px;
+    border-radius: 8px;
+    background: white;
+    padding: 20px;
+    width: 40%;
+    box-shadow: 0px 0px 21px lightgrey;
+    display: inline-block;
+    position: relative;
+  }
+}
+
+.password-modal {
+  font-size: 12px;
+  position: fixed;
+  top: 46%;
+  right: 10px;
+  width: 23%;
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 0px 21px lightgrey;
+}
+
+.background-img {
+  min-height: 300px;
+  max-height: 440px;
+  min-width: 300px;
+  max-width: 440px;
+  position: fixed;
+  bottom: 0px;
+  left:0;
+}
+
+#success-img {
+  width: 60%;
+  margin-top: 20px;
+  border-radius: 49%;
+  border: 5px solid dodgerblue;
+}
+
+.error {
+  color: red;
+}
+
+//Mobile
+@media only screen and (max-width: 768px) {
+  .register-form {
+      width: 90% !important;
+  }
+
+  .password-modal {
+    right: 19px;
+    width: 63%;
+    top: 78px;
+  }
+}
